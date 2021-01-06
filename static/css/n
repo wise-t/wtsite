@@ -1,0 +1,233 @@
+
+
+######################################################################
+/*fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;0,800;1,400&display=swap');
+
+/*reset*/
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    margin: auto;
+    z-index: 999;
+}
+
+
+/*helper*/
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    z-index: 999;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+
+/*main style*/
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background-color: #fefefe;
+}
+
+.navbar {
+    height: 450px;
+    width: 100%;
+    position: relative;
+    background: rgb(62, 57, 107);
+    background-size: cover;
+}
+
+.navbar .navbar-brand {
+    font-size: 4em;
+    color: #fff;
+    text-decoration: none;
+    font-family: nunito;
+    margin-top: 5em;
+}
+
+.header__texture {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../img/startp.jpg') center no-repeat;
+    background-size: cover;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+.header__mask {
+    position: absolute;
+    bottom: 0;
+    background: 0 0;
+    height: 45px;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar .navbar-right {
+    float: right;
+    font-size: 1.3em;
+    font-family: nunito;
+}
+
+.navbar .navbar-right li {
+    display: inline;
+    list-style: none;
+    margin-right: 0.8em;
+}
+
+.navbar .navbar-right :last-child {
+    margin-right: 0.;
+}
+
+.navbar .navbar-right li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.h__slogan--title {
+    color: #fff;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-family: anton;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.navbar .navbar-right a:hover {
+    color: #1ce;
+}
+
+.footer {
+    margin-top: 3em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.footer:before {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #1ce;
+    margin: 0.5em auto;
+    width: 10%;
+}
+##############################################################
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<div class=wrapper>
+
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js">
+        <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+        <title>
+            {% block title %} Wisdsol.com {% endblock %}
+        </title>
+    </head>
+</div>
+
+<body>
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'home' %}">Wisdsol !!!</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- ###categotymenu code###-->
+
+                    {%if cat_menu %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            {%for item in cat_menu %}
+                            <a class="dropdown-item" href="{%url 'blog:category' item|slugify %}">
+                            {{item}}</a> {%endfor%}
+
+
+                        </div>
+                    </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'blog:category-list'%}">Categories</a>
+                    </li>
+
+                    {%endif%} {%if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'blog:add_post'%}">add_post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'blog:add_category'%}">add_category</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                    </li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'members:register'%}">register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'login'%}">Login</a>
+                    </li>
+
+                    {% endif %}
+
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <br/>
+        <div class="container myContainer">
+            {% block content%} {% endblock %}
+        </div>
+        {% include "layouts/_footer.html" %}
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </div>
+
+</body>
+
+
+</html>
+
+

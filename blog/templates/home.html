@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% block content%}
+
+{% load static %}
+
+
+<h1>Post</h1>
+
+<ul>
+{% for post in object_list%}
+    <article>
+        <h3 class="title", "add_post" {{author.id}}>
+            <a href="{%url 'blog:article-detail' post.pk %}">{{post.title}}</a>
+            <a href="{%url 'blog:category' post.category|slugify %}">{{post.category}}</a>
+            -{{post.author.first_name}}
+            {{post.author.last_name}}-
+            {{post.post_date}} <small>
+            
+            <p class="time"><time datetime="{{post.created_at|date:'Y-m-d'}}">Updated {{post.updated_at|timesince}} ago</time></p>
+            
+
+        </h3>
+        {%if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <a href="{%url 'blog:update_post' post.pk %}"> (Edit) </a>
+                <a href="{%url 'blog:delete_post' post.pk %}"> (Delete) </a>
+            {%endif%}
+        {% endif %}
+	</small><br/> 
+    <p class="content">{{post.body|truncatewords:3|safe}}</p>
+    </article>
+   
+{%endfor%}
+</ul>
+
+
+{% endblock %}

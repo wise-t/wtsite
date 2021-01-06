@@ -1,0 +1,81 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wisdsol-tech</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href=https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}"> 
+    
+    
+    {% block stylesheets %} {% endblock%}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>{% block title %}myse{% endblock %}</title>
+  </head>
+  <body>
+      {% include "layouts/_nav.html" %}
+
+      
+
+      <div class="articles">
+        <div class="container">
+            <h2 class="article__title">EVENTS</h2>
+        <div class="article__items">
+            <a href="{% url 'about'%}" class="article" style="background:url('static/img/startup.jpg');background-size: cover;">
+                <div class="article__filtre"></div>
+                <div class="article__name">About WISDSOL-TECH</div>
+                <div class="article__icon"><i class="fas fa-spinner"></i></div>
+            </a>
+            <div class="article" style="background:url('static/img/VT.jpg');background-size: cover;">
+            <a href="{% url 'contact'%}">
+                <div class="article__filtre"></div>
+                <div class="article__name">Contact</div>
+                <div class="article__icon"><i class="fas fa-spinner"></i></div>
+            </a>
+            </div>
+            <div class="article" style="background:url('static/img/VT8.jpg');background-size: cover;">
+            <a href="{% url 'News'%}">
+                <div class="article__filtre"></div>
+                <div class="article__name">NEWS</div>
+                <div class="article__icon"><i class="fas fa-spinner"></i></div>
+            </a>
+            </div>
+        </div>
+        </div>
+  
+    </div>
+    <br>
+    <br>
+    <hr>
+    <div class="container">
+      {% block content %}{% endblock %}
+      <a href="{% url 'home'%}"><i class="fas fa-home"></i>Home</a>
+      <a href="{% url 'blog:home'%}">Blog</a>
+
+  </div>
+
+      {% include "layouts/_footer.html" %} 
+      
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="static/js/app.js"></script> 
+
+
+
+
+  </body>
+</html>
