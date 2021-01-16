@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Category#, Comment
+from .models import Post, Category, Comment
 #choices=[('sport','sport'),('coding','coding'),('entertaiment','entertaiment')]
 choices = Category.objects.all().values_list('name', 'name')
 
@@ -34,3 +34,10 @@ class EditForm(forms.ModelForm):
             #'author':forms.Select(attrs={'class':'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('author', 'text',)

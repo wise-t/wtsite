@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category
-from .forms import PostForm, EditForm
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -96,3 +97,36 @@ class DeletePostView(DeleteView):
 	form_class = EditForm
 	template_name = 'delete_post.html'
 	success_url = reverse_lazy('blog:home')
+
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+	#return HttpResponseRedirect(reverse('blog:article-detail',args=[pk]))
+            return redirect('blog:article-detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'add_comment_to_post.html', {'form': form})
+
+#@login_required
+
+
+def comment_approve(request, pk):
+	comment = get_object_or_404(Comment, pk=pk)
+	comment.approve()
+	return redirect('blog:article-detail', pk=comment.post.pk)
+	#return HttpResponseRedirect(reverse('blog:article-detail',args=[pk] ))
+
+#@login_required
+
+
+def comment_remove(request, pk):
+	comment = get_object_or_404(Comment, pk=pk)
+	comment.delete()
+	return redirect('blog:article-detail', pk=comment.post.pk)
+	#return HttpResponseRedirect(reverse('blog:article-detail',args=[pk] ))
