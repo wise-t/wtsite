@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post#, Category
+from .models import Post, Category
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
@@ -37,15 +37,15 @@ class HomeView(ListView):
 		return context
 
 
-#def CategoryListView(request):
-	#cat_menu_list=Category.objects.all()
-	#return render(request,'category_list.html',{'cat_menu_list':cat_menu_list})
+def CategoryListView(request):
+	cat_menu_list=Category.objects.all()
+	return render(request,'category_list.html',{'cat_menu_list':cat_menu_list})
 	
 
 
-#def CategoryView(request,cats):
-#	category_posts=Post.objects.filter(category=cats.replace('-',' '))
-#	return render(request,'categories.html',{'cats':cats.title().replace('-',' '),'category_posts':category_posts})
+def CategoryView(request,cats):
+	category_posts=Post.objects.filter(category=cats.replace('-',' '))
+	return render(request,'categories.html',{'cats':cats.title().replace('-',' '),'category_posts':category_posts})
 	
 
 class ArticleDetailView(DetailView):
@@ -75,11 +75,11 @@ class AddPostView(CreateView):
 	template_name='add_post.html'
 	#fields='__all__'
 	#fields=('title','body')
-#class AddCategoryView(CreateView):
-#	model=Category
-#	#form_class=PostForm 
-#	template_name='add_category.html'
-#	fields='__all__'
+class AddCategoryView(CreateView):
+	model=Category
+	#form_class=PostForm 
+	template_name='add_category.html'
+	fields='__all__'
 	#fields=('title','body')
 
 class UpdatePostView(UpdateView):
