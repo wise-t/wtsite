@@ -1,6 +1,6 @@
 from django import forms
 from .models import Post, Comment#, Category
-#choices=[('sport','sport'),('coding','coding'),('entertaiment','entertaiment')]
+choices=[('sport','sport'),('coding','coding'),('entertaiment','entertaiment')]
 #choices = Category.objects.all().values_list('name', 'name')
 
 choices_list = []
