@@ -31,7 +31,7 @@ class Post(TimespamtedModel):
     body=RichTextField(blank=True, null=True)
     #body = models.TextField(default='addtext')
     post_date = models.DateField(auto_now_add=True)
-    #category = models.CharField(max_length=255,default='category')
+    category = models.CharField(max_length=255,default='category')
     likes = models.ManyToManyField(User, related_name='blog_posts')
     
     def total_likes(self):
