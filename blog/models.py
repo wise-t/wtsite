@@ -14,7 +14,7 @@ class TimespamtedModel(models.Model):
         abstract = True
 
 
-class Category(models.Model):
+class category(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
