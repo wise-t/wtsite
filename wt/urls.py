@@ -30,7 +30,7 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('article1/',views.contact,name='article1'),
     path('news/',views.contact,name='News'),
-    path('blog/', include('blog.urls')),
+    #path('blog/', include('blog.urls')),
     path('members/',include('django.contrib.auth.urls')),
     path('members',include('members.urls')),
     path('admin/', admin.site.urls),
