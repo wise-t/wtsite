@@ -1,7 +1,7 @@
 
 from django.urls import path,re_path
 #rom.import views
-from .views import HomeView , ArticleDetailView,AddPostView,UpdatePostView,DeletePostView,LikeView#,AddCategoryView,CategoryView,CategoryListView
+from .views import HomeView , ArticleDetailView,AddPostView,UpdatePostView,DeletePostView,LikeView,CategoryView#,AddCategoryView,CategoryListView
 from . import views
 
 app_name='blog'
@@ -16,7 +16,7 @@ urlpatterns = [
     
     path ('like/<int:pk>',LikeView, name='like_post'),
     #path('add_category/',AddCategoryView.as_view(),name='add_category'),
-    #path('category/<str:cats>/',CategoryView,name='category'),
+    path('category/<str:cats>/',CategoryView,name='category'),
     #path('category-list/',CategoryListView,name='category-list'),
 
 ]
