@@ -32,7 +32,7 @@ class HomeView(ListView):
 	ordering = ['-updated_at']
 
 	def get_context_data(self, *args, **kwargs):
-		cat_menu = Category.objects.all()
+		cat_menu = category.objects.all()
 		context = super(HomeView, self).get_context_data(*args, **kwargs)
 		context["cat_menu"] = cat_menu
 		return context
@@ -53,7 +53,7 @@ class ArticleDetailView(DetailView):
 	template_name = 'article_details.html'
 
 	def get_context_data(self, *args, **kwargs):
-		cat_menu = Category.objects.all()
+		cat_menu = category.objects.all()
 		context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
 
 		stuff = get_object_or_404(Post, id=self.kwargs['pk'])
