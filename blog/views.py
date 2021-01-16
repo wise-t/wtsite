@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post#, Category
+from .models import Post, Category
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
@@ -76,11 +76,11 @@ class AddPostView(CreateView):
 	#fields=('title','body')
 
 
-#class AddCategoryView(CreateView):
-	#model = Category
+class AddCategoryView(CreateView):
+	model = Category
 	#form_class=PostForm
-	#template_name = 'add_category.html'
-	#fields = '__all__'
+	template_name = 'add_category.html'
+	fields = '__all__'
 	#fields=('title','body')
 
 
