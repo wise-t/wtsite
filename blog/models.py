@@ -14,16 +14,15 @@ class TimespamtedModel(models.Model):
         abstract=True
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
+#class Category(models.Model):
+    #name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+        #return self.name
 
-
-    def get_absolute_url(self):
+    #def get_absolute_url(self):
         #return reverse("article-detail", args=(str(self.id)))
-        return reverse('blog:home')
+        #return reverse('blog:home')
 
 class Post(TimespamtedModel):
     title = models.CharField(max_length=255)
@@ -32,7 +31,7 @@ class Post(TimespamtedModel):
     body=RichTextField(blank=True, null=True)
     #body = models.TextField(default='addtext')
     post_date = models.DateField(auto_now_add=True)
-    category = models.CharField(max_length=255,default='category')
+    #category = models.CharField(max_length=255,default='category')
     likes = models.ManyToManyField(User, related_name='blog_posts')
     
     def total_likes(self):
